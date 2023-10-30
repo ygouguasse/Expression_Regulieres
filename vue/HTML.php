@@ -10,7 +10,7 @@
 			placeholder="inputLongueur"
 			id="inputLongueur"
 			name="inputLongueur"
-            pattern=""
+            pattern=".{12,20}"
 			required
 		>
 		<label for="inputLongueur">Entre 12 et 20 caractères</label>
@@ -24,7 +24,7 @@
 			placeholder="inputMinuscules"
 			id="inputMinuscules"
 			name="inputMinuscules"
-            pattern=""
+            pattern=".*([\p{Ll}\p{M}].*){2}"
 			required
 		>
 		<label for="inputMinuscules">Au moins 2 lettres minucules</label>
@@ -38,7 +38,7 @@
             placeholder="inputMajuscules"
             id="inputMajuscules"
             name="inputMajuscules"
-            pattern=""
+            pattern=".*([\p{Lu}\p{M}].*){2}"
             required
         >
         <label for="inputMajuscules">Au moins 2 lettres majuscules</label>
@@ -52,7 +52,7 @@
             placeholder="inputChiffres"
             id="inputChiffres"
             name="inputChiffres"
-            pattern=""
+            pattern=".*(\d.*){2}"
             required
         >
         <label for="inputChiffres">Au moins 2 chiffres</label>
@@ -66,7 +66,7 @@
             placeholder="inputSpeciaux"
             id="inputSpeciaux"
             name="inputSpeciaux"
-            pattern=""
+            pattern=".*([@$!%*#?&].*){2}"
             required
         >
         <label for="inputSpeciaux">Au moins 2 caractères spéciaux parmi : @, $, !, %, *, #, ? et &</label>
@@ -80,9 +80,14 @@
             placeholder="inputMotDePasse"
             id="inputMotDePasse"
             name="inputMotDePasse"
-            pattern=""
+            pattern="(?=.*([\p{Ll}\p{M}].*){2})(?=.*([\p{Lu}\p{M}].*){2})(?=.*(\d.*){2})(?=.*([@$!%*#?&].*){2})[\p{L}\p{M}\d@$!%*#?&]{12,20}"
             required
         >
+        <!-- (?=.*([\p{Ll}\p{M}].*){2}) : au moins 2 lettres minucules -->
+        <!-- (?=.*([\p{Lu}\p{M}].*){2}) : au moins 2 lettres majuscules -->
+        <!-- (?=.*(\d.*){2}) : au moins 2 chiffres -->
+        <!-- (?=.*([@$!%*#?&].*){2}) : au moins 2 caractères spéciaux parmi : @, $, !, %, *, #, ? et & -->
+        <!-- [\p{L}\p{M}\d@$!%*#?&]{12,20} entre 12 et 20 caractères parmis les caractères authorisés -->
         <label for="inputMotDePasse">Mot de passe</label>
         <div class="invalid-feedback">
             Entre 12 et 20 caractères. <br>
